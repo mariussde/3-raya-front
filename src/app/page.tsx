@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { GameBoard } from '@/components/GameBoard';
 import { GameStatus } from '@/components/GameStatus';
-import { Button } from '@/components/ui/Button';
+
 import { GameHistory } from '@/components/GameHistory';
 
 interface Game {
@@ -86,9 +86,12 @@ export default function Home() {
           <GameBoard board={game.board} onCellClick={handleCellClick} />
 
           <div className="flex justify-center">
-            <Button onClick={createGame} className="mt-4">
-              New Game
-            </Button>
+          <button className="p-[3px] relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
+          <div className="px-8 py-2  bg-black rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent">
+            New Game
+          </div>
+        </button>
           </div>
 
           {error && <p className="mt-4 text-center text-red-300">{error}</p>}
