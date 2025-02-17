@@ -18,7 +18,7 @@ export const GameHistory = () => {
       );
       setGames(response.data);
       setError('');
-    } catch (_) {
+    } catch {
       setError('Failed to fetch game history');
     }
   };
@@ -49,26 +49,26 @@ export const GameHistory = () => {
   };
 
   if (error) {
-    return <p className="text-red-500 text-sm">{error}</p>;
+    return <p className="text-red-500 text-xs">{error}</p>;
   }
 
   return (
-    <div className="w-full">
-      <h2 className="text-xl font-semibold mb-4">Last 10 Games</h2>
-      <div className="space-y-2">
+    <div className="w-full max-w-[250px] bg-white dark:bg-gray-900 rounded-lg shadow-lg p-3">
+      <h2 className="text-sm font-semibold mb-2">Last Games</h2>
+      <div className="space-y-1">
         {games.map((game) => (
           <div
             key={game._id}
-            className="flex justify-between items-center p-3 bg-gray-100 dark:bg-gray-800 rounded-lg"
+            className="flex justify-between items-center py-1 px-2 bg-gray-50 dark:bg-gray-800 rounded text-xs"
           >
-            <span className="font-medium">{getStatusText(game.status)}</span>
-            <span className="text-sm text-gray-500">
+            <span>{getStatusText(game.status)}</span>
+            <span className="text-gray-500 ml-3">
               {formatTime(game.createdAt)}
             </span>
           </div>
         ))}
         {games.length === 0 && (
-          <p className="text-center text-gray-500">No games played yet</p>
+          <p className="text-center text-gray-500 text-xs">No games yet</p>
         )}
       </div>
     </div>

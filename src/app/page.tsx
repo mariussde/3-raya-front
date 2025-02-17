@@ -69,24 +69,29 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-4">
-      <div className="w-full max-w-md space-y-8">
-        <h1 className="text-center text-4xl font-bold">3 en raya</h1>
+    <main className="relative min-h-screen p-4">
+      <div className="hidden md:block absolute top-4 right-4">
+        <GameHistory key={`desktop-${historyKey}`} />
+      </div>
+      
+      <div className="flex flex-col items-center justify-center min-h-screen">
+        <div className="w-full max-w-md space-y-8">
+          <h1 className="text-center text-4xl font-bold">3 en raya</h1>
 
-        <GameStatus game={game} />
+          <GameStatus game={game} />
 
-        <GameBoard board={game.board} onCellClick={handleCellClick} />
+          <GameBoard board={game.board} onCellClick={handleCellClick} />
 
-        <div className="flex justify-center">
-          <Button onClick={createGame} className="mt-4">
-            New Game
-          </Button>
-        </div>
+          <div className="flex justify-center">
+            <Button onClick={createGame} className="mt-4">
+              New Game
+            </Button>
+          </div>
 
-        {error && <p className="mt-4 text-center text-red-500">{error}</p>}
-
-        <div className="mt-8">
-          <GameHistory key={historyKey} />
+          {error && <p className="mt-4 text-center text-red-500">{error}</p>}
+          <div className="md:hidden mt-8 flex justify-center">
+            <GameHistory key={`mobile-${historyKey}`} />
+          </div>
         </div>
       </div>
     </main>
