@@ -15,7 +15,9 @@ interface GameBoardProps {
               disabled={cell !== ''}
               aria-label={`Cell ${rowIndex}-${colIndex}`}
             >
-              {cell}
+              <span className={cell === 'X' ? 'text-blue-600' : 'text-red-600'}>
+                {cell}
+              </span>
             </button>
           )),
         )}

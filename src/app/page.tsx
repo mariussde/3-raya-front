@@ -65,7 +65,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-4">
       <div className="w-full max-w-md space-y-8">
-        <h1 className="text-center text-4xl font-bold">Tic Tac Toe</h1>
+        <h1 className="text-center text-4xl font-bold">3 en raya</h1>
 
         <GameStatus game={game} />
 
