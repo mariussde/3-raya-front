@@ -59,24 +59,27 @@ export default function Home() {
 
   if (!game) {
     return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="text-center">
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-gray-900 via-purple-900 to-violet-800">
+        <div className="text-center text-white">
           <p className="mb-4 text-lg">Loading game...</p>
-          {error && <p className="text-red-500">{error}</p>}
+          {error && <p className="text-red-300">{error}</p>}
         </div>
       </div>
     );
   }
 
   return (
-    <main className="relative min-h-screen p-4">
-      <div className="hidden md:block absolute top-4 right-4">
+    <main className="relative min-h-screen p-4 bg-gradient-to-br from-gray-900 via-purple-900 to-violet-800 overflow-hidden">
+      {/* Background pattern overlay */}
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAzNGM0LjQxOCAwIDgtMy41ODIgOC04cy0zLjU4Mi04LTgtOC04IDMuNTgyLTggOCAzLjU4MiA4IDggOHoiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjEpIiBzdHJva2Utd2lkdGg9IjIiLz48L2c+PC9zdmc+')] opacity-10" />
+      
+      <div className="hidden md:block absolute top-4 left-4 z-10">
         <GameHistory key={`desktop-${historyKey}`} />
       </div>
       
-      <div className="flex flex-col items-center justify-center min-h-screen">
+      <div className="flex flex-col items-center justify-center min-h-screen relative z-10">
         <div className="w-full max-w-md space-y-8">
-          <h1 className="text-center text-4xl font-bold">3 en raya</h1>
+          <h1 className="text-center text-4xl font-bold text-white">3 en raya</h1>
 
           <GameStatus game={game} />
 
@@ -88,7 +91,7 @@ export default function Home() {
             </Button>
           </div>
 
-          {error && <p className="mt-4 text-center text-red-500">{error}</p>}
+          {error && <p className="mt-4 text-center text-red-300">{error}</p>}
           <div className="md:hidden mt-8 flex justify-center">
             <GameHistory key={`mobile-${historyKey}`} />
           </div>
