@@ -5,6 +5,7 @@ import axios from 'axios';
 import { GameBoard } from '@/components/GameBoard';
 import { GameStatus } from '@/components/GameStatus';
 import { Button } from '@/components/ui/Button';
+import { GameHistory } from '@/components/GameHistory';
 
 interface Game {
   _id: string;
@@ -16,12 +17,14 @@ interface Game {
 export default function Home() {
   const [game, setGame] = useState<Game | null>(null);
   const [error, setError] = useState<string>('');
+  const [historyKey, setHistoryKey] = useState(0);
 
   const createGame = async () => {
     try {
       const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/game`);
       setGame(response.data);
       setError('');
+      setHistoryKey((prev) => prev + 1);
     } catch {
       setError('Failed to create game');
     }
@@ -41,6 +44,9 @@ export default function Home() {
         },
       );
       setGame(response.data);
+      if (response.data.status !== 'IN_PROGRESS') {
+        setHistoryKey((prev) => prev + 1);
+      }
       setError('');
     } catch {
       setError('Failed to make move');
@@ -78,6 +84,10 @@ export default function Home() {
         </div>
 
         {error && <p className="mt-4 text-center text-red-500">{error}</p>}
+
+        <div className="mt-8">
+          <GameHistory key={historyKey} />
+        </div>
       </div>
     </main>
   );
